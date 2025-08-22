@@ -82,7 +82,7 @@ The app automatically converts URLs and Discord-style links to clickable links:
 ### Installation
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Yndaw2h/todo.git
 
 # Install dependencies
 npm install
