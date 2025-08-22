@@ -33,6 +33,8 @@
     "files": [
       "main.js",
       "index.html",
+      "styles/*",
+      "js/*",
       "node_modules/**/*",
       "!node_modules/.cache/**/*"
     ],
