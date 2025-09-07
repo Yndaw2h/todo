@@ -5,34 +5,50 @@
 }
 
 body {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #151a23 100%);
     min-height: 100vh;
-    color: #e0e0e0;
+    color: #8892b0;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Subtle background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(100, 255, 218, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(100, 255, 218, 0.01) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .app-container {
-    background: rgba(20, 20, 30, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+    background: rgba(23, 29, 37, 0.95);
+    backdrop-filter: blur(20px) saturate(1.1);
+    border-radius: 16px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
     padding: 32px;
     max-width: 1200px;
     margin: 0 auto;
-    animation: slideUp 0.6s ease-out;
+    position: relative;
+    transition: box-shadow 0.3s ease;
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.app-container:hover {
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(100, 255, 218, 0.08);
 }
 
 .app-header {
@@ -41,25 +57,28 @@ body {
 }
 
 .app-title {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #64ffda, #bb86fc, #cf6679);
+    background: linear-gradient(135deg, #64ffda 0%, #a8dadc 50%, #64ffda 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 8px;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
 }
 
 .app-subtitle {
-    color: rgba(255, 255, 255, 0.6);
+    color: #8892b0;
     font-size: 1rem;
     font-weight: 400;
+    opacity: 0.8;
 }
 
 .loading-indicator {
     text-align: center;
     padding: 40px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #8892b0;
     display: none;
 }
 
@@ -69,9 +88,9 @@ body {
 
 .loading-spinner {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    border: 3px solid rgba(100, 255, 218, 0.3);
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(100, 255, 218, 0.1);
     border-radius: 50%;
     border-top-color: #64ffda;
     animation: spin 1s ease-in-out infinite;
@@ -98,27 +117,26 @@ body {
 
 .project-input, .content-input {
     flex: 1;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.08);
-    color: #e0e0e0;
+    padding: 14px 18px;
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 12px;
+    background: rgba(23, 29, 37, 0.8);
+    color: #e6f1ff;
     font-size: 1rem;
     font-weight: 500;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    outline: none;
 }
 
 .project-input::placeholder, .content-input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(136, 146, 176, 0.6);
 }
 
 .project-input:focus, .content-input:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #64ffda;
-    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+    background: rgba(23, 29, 37, 0.95);
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.05);
 }
 
 .content-input {
@@ -128,40 +146,45 @@ body {
 }
 
 .add-btn, .back-btn {
-    padding: 16px 24px;
-    border: none;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #64ffda, #bb86fc);
-    color: #000;
+    padding: 14px 24px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), rgba(100, 255, 218, 0.02));
+    color: #64ffda;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
 }
 
 .add-btn:hover, .back-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
-    background: linear-gradient(135deg, #4fd3b8, #a374e8);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.08), rgba(100, 255, 218, 0.04));
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.1);
 }
 
 .back-btn {
-    background: linear-gradient(135deg, #cf6679, #bb86fc);
+    background: linear-gradient(135deg, rgba(136, 146, 176, 0.05), rgba(136, 146, 176, 0.02));
+    border-color: rgba(136, 146, 176, 0.2);
+    color: #8892b0;
 }
 
 .back-btn:hover {
-    background: linear-gradient(135deg, #b85469, #a374e8);
+    background: linear-gradient(135deg, rgba(136, 146, 176, 0.08), rgba(136, 146, 176, 0.04));
+    border-color: rgba(136, 146, 176, 0.3);
+    color: #a8b2d1;
 }
 
 .project-stats {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
-    padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 24px;
+    background: rgba(23, 29, 37, 0.6);
+    border-radius: 12px;
+    border: 1px solid rgba(100, 255, 218, 0.08);
 }
 
 .stat {
@@ -169,50 +192,58 @@ body {
 }
 
 .stat-number {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #64ffda;
     display: block;
+    line-height: 1;
 }
 
 .stat-label {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #8892b0;
     margin-top: 4px;
+    opacity: 0.8;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
+    background: rgba(23, 29, 37, 0.8);
+    border-radius: 16px;
     padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 255, 218, 0.08);
     transition: all 0.3s ease;
     cursor: pointer;
-    animation: cardSlideIn 0.4s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes cardSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 15px 35px rgba(100, 255, 218, 0.1);
-    border-color: rgba(100, 255, 218, 0.3);
+    transform: translateY(-2px);
+    background: rgba(23, 29, 37, 0.95);
+    border-color: rgba(100, 255, 218, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-card:hover::before {
+    transform: translateX(100%);
 }
 
 .project-header {
@@ -224,20 +255,22 @@ body {
 
 .project-title {
     font-size: 1.25rem;
-    font-weight: 700;
-    color: #e0e0e0;
+    font-weight: 600;
+    color: #e6f1ff;
     margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .project-meta {
     display: flex;
     gap: 16px;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #8892b0;
+    opacity: 0.8;
 }
 
 .project-content-preview {
-    color: rgba(255, 255, 255, 0.7);
+    color: #a8b2d1;
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 16px 0;
@@ -254,37 +287,40 @@ body {
 }
 
 .action-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 12px;
+    padding: 8px 14px;
+    border: 1px solid;
+    border-radius: 8px;
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    outline: none;
 }
 
 .edit-btn {
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.2);
 }
 
 .delete-btn {
-    background: rgba(207, 102, 121, 0.2);
-    color: #cf6679;
-    border: 1px solid rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.05);
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
 }
 
 .action-btn:hover {
-    transform: scale(1.05);
+    transform: translateY(-1px);
 }
 
 .edit-btn:hover {
-    background: rgba(100, 255, 218, 0.3);
+    background: rgba(100, 255, 218, 0.08);
+    border-color: rgba(100, 255, 218, 0.3);
 }
 
 .delete-btn:hover {
-    background: rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.08);
+    border-color: rgba(255, 107, 107, 0.3);
 }
 
 .project-detail {
@@ -298,19 +334,22 @@ body {
 .detail-header {
     margin-bottom: 32px;
     padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
 }
 
 .detail-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    color: #64ffda;
+    color: #e6f1ff;
     margin-bottom: 12px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
 }
 
 .detail-meta {
-    color: rgba(255, 255, 255, 0.5);
+    color: #8892b0;
     font-size: 0.95rem;
+    opacity: 0.8;
 }
 
 .content-section {
@@ -324,27 +363,28 @@ body {
 }
 
 .content-item {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    background: rgba(23, 29, 37, 0.6);
+    border-radius: 12px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 255, 218, 0.06);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
 }
 
 .content-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(100, 255, 218, 0.3);
+    background: rgba(23, 29, 37, 0.8);
+    border-color: rgba(100, 255, 218, 0.12);
+    transform: translateX(2px);
 }
 
 .content-item.editing {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
+    background: rgba(100, 255, 218, 0.02);
+    border-color: rgba(100, 255, 218, 0.15);
 }
 
 .content-text {
-    color: #e0e0e0;
+    color: #e6f1ff;
     line-height: 1.6;
     white-space: pre-wrap;
     word-break: break-word;
@@ -357,36 +397,29 @@ body {
     text-decoration: none;
     border-bottom: 1px solid rgba(100, 255, 218, 0.3);
     transition: all 0.3s ease;
-    position: relative;
 }
 
 .content-text a:hover {
-    color: #4fd3b8;
-    border-bottom-color: #4fd3b8;
-    text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+    color: #79ffe1;
+    border-bottom-color: #79ffe1;
 }
 
 .content-text a:visited {
-    color: #bb86fc;
-    border-bottom-color: rgba(187, 134, 252, 0.3);
-}
-
-.content-text a:visited:hover {
-    color: #a374e8;
-    border-bottom-color: #a374e8;
+    color: #a8dadc;
+    border-bottom-color: rgba(168, 218, 220, 0.3);
 }
 
 .content-text a::after {
     content: ' ↗';
-    font-size: 0.8em;
-    opacity: 0.6;
+    font-size: 0.85em;
+    opacity: 0.7;
 }
 
 .content-textarea {
     width: 100%;
     background: transparent;
     border: none;
-    color: #e0e0e0;
+    color: #e6f1ff;
     font-family: inherit;
     font-size: inherit;
     line-height: 1.6;
@@ -407,40 +440,41 @@ body {
 
 .save-btn, .cancel-btn {
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid;
+    border-radius: 6px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    outline: none;
 }
 
 .save-btn {
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.2);
 }
 
 .cancel-btn {
-    background: rgba(207, 102, 121, 0.2);
-    color: #cf6679;
-    border: 1px solid rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.05);
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
 }
 
 .save-btn:hover {
-    background: rgba(100, 255, 218, 0.3);
+    background: rgba(100, 255, 218, 0.08);
 }
 
 .cancel-btn:hover {
-    background: rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.08);
 }
 
 .edit-hint {
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: 12px;
+    right: 16px;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(136, 146, 176, 0.4);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -455,27 +489,28 @@ body {
 
 .content-date {
     font-size: 0.825rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(136, 146, 176, 0.6);
     margin-top: 12px;
     text-align: right;
 }
 
 .empty-state {
     text-align: center;
-    padding: 64px 20px;
-    color: rgba(255, 255, 255, 0.5);
+    padding: 60px 20px;
+    color: rgba(136, 146, 176, 0.6);
 }
 
 .empty-icon {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 16px;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .empty-text {
     font-size: 1.125rem;
     font-weight: 500;
     margin-bottom: 8px;
+    color: #8892b0;
 }
 
 .empty-subtext {
@@ -484,17 +519,17 @@ body {
 }
 
 .add-content-form {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+    background: rgba(23, 29, 37, 0.4);
+    border-radius: 12px;
     padding: 24px;
     margin-bottom: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 255, 218, 0.06);
 }
 
 .form-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #bb86fc;
+    color: #e6f1ff;
     margin-bottom: 16px;
 }
 
@@ -518,33 +553,34 @@ body {
 }
 
 .file-btn {
-    padding: 16px 24px;
-    border: none;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #bb86fc, #cf6679);
-    color: #000;
+    padding: 14px 24px;
+    border: 1px solid rgba(168, 218, 220, 0.2);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(168, 218, 220, 0.05), rgba(168, 218, 220, 0.02));
+    color: #a8dadc;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     display: inline-block;
+    outline: none;
 }
 
 .file-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(187, 134, 252, 0.3);
-    background: linear-gradient(135deg, #a374e8, #b85469);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(168, 218, 220, 0.08), rgba(168, 218, 220, 0.04));
+    border-color: rgba(168, 218, 220, 0.3);
+    box-shadow: 0 4px 12px rgba(168, 218, 220, 0.1);
 }
 
 .file-preview {
-    margin-top: 12px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(23, 29, 37, 0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.08);
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #e6f1ff;
     display: none;
 }
 
@@ -554,7 +590,7 @@ body {
 
 .file-name {
     font-weight: 600;
-    color: #bb86fc;
+    color: #a8dadc;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -562,33 +598,34 @@ body {
 }
 
 .file-name input {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
+    background: rgba(23, 29, 37, 0.8);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 4px;
     padding: 4px 8px;
-    color: #bb86fc;
+    color: #a8dadc;
     font-weight: 600;
     font-size: inherit;
     flex: 1;
+    outline: none;
 }
 
 .file-name input:focus {
-    outline: none;
-    border-color: #bb86fc;
-    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(100, 255, 218, 0.3);
+    background: rgba(23, 29, 37, 0.95);
 }
 
 .file-content {
     max-height: 200px;
     overflow-y: auto;
     white-space: pre-wrap;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.85rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(15, 20, 25, 0.6);
     padding: 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(100, 255, 218, 0.05);
     position: relative;
+    color: #8892b0;
 }
 
 .file-content-editable {
@@ -596,38 +633,39 @@ body {
     min-height: 120px;
     max-height: 300px;
     resize: vertical;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    background: rgba(15, 20, 25, 0.8);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 6px;
     padding: 12px;
-    color: #e0e0e0;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #e6f1ff;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.85rem;
     line-height: 1.4;
+    outline: none;
 }
 
 .file-content-editable:focus {
-    outline: none;
-    border-color: #64ffda;
-    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(100, 255, 218, 0.2);
+    background: rgba(15, 20, 25, 0.95);
 }
 
 .file-edit-toggle {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    border-radius: 6px;
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 4px;
     padding: 4px 8px;
     font-size: 0.75rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    outline: none;
 }
 
 .file-edit-toggle:hover {
-    background: rgba(100, 255, 218, 0.3);
+    background: rgba(100, 255, 218, 0.08);
 }
 
 .file-edit-actions {
@@ -639,47 +677,48 @@ body {
 
 .file-action-btn {
     padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
+    border: 1px solid;
+    border-radius: 4px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    outline: none;
 }
 
 .file-save-btn {
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.2);
 }
 
 .file-cancel-btn {
-    background: rgba(207, 102, 121, 0.2);
-    color: #cf6679;
-    border: 1px solid rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.05);
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
 }
 
 .file-reset-btn {
-    background: rgba(187, 134, 252, 0.2);
-    color: #bb86fc;
-    border: 1px solid rgba(187, 134, 252, 0.3);
+    background: rgba(168, 218, 220, 0.05);
+    color: #a8dadc;
+    border-color: rgba(168, 218, 220, 0.2);
 }
 
 .file-save-btn:hover {
-    background: rgba(100, 255, 218, 0.3);
+    background: rgba(100, 255, 218, 0.08);
 }
 
 .file-cancel-btn:hover {
-    background: rgba(207, 102, 121, 0.3);
+    background: rgba(255, 107, 107, 0.08);
 }
 
 .file-reset-btn:hover {
-    background: rgba(187, 134, 252, 0.3);
+    background: rgba(168, 218, 220, 0.08);
 }
 
 .file-edit-hint {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(136, 146, 176, 0.5);
     margin-top: 8px;
     font-style: italic;
 }
@@ -687,27 +726,27 @@ body {
 .content-type-tag {
     display: inline-block;
     padding: 4px 8px;
-    background: rgba(187, 134, 252, 0.2);
-    color: #bb86fc;
-    border-radius: 6px;
+    background: rgba(168, 218, 220, 0.1);
+    color: #a8dadc;
+    border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 500;
     margin-bottom: 8px;
-    border: 1px solid rgba(187, 134, 252, 0.3);
+    border: 1px solid rgba(168, 218, 220, 0.15);
 }
 
 .file-info {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(136, 146, 176, 0.6);
     margin-top: 8px;
 }
 
 .image-preview {
     max-width: 100%;
     max-height: 300px;
-    border-radius: 8px;
+    border-radius: 6px;
     margin: 12px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 255, 218, 0.1);
 }
 
 .content-actions-bar {
@@ -715,45 +754,45 @@ body {
     gap: 8px;
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(100, 255, 218, 0.06);
     flex-wrap: wrap;
 }
 
 .copy-btn, .download-btn {
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid;
+    border-radius: 6px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    outline: none;
 }
 
 .copy-btn {
-    background: rgba(187, 134, 252, 0.2);
-    color: #bb86fc;
-    border: 1px solid rgba(187, 134, 252, 0.3);
+    background: rgba(168, 218, 220, 0.05);
+    color: #a8dadc;
+    border-color: rgba(168, 218, 220, 0.2);
 }
 
 .download-btn {
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.2);
 }
 
 .copy-btn:hover {
-    background: rgba(187, 134, 252, 0.3);
+    background: rgba(168, 218, 220, 0.08);
 }
 
 .download-btn:hover {
-    background: rgba(100, 255, 218, 0.3);
+    background: rgba(100, 255, 218, 0.08);
 }
 
-/* File editor in content items */
 .file-editor-section {
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(100, 255, 218, 0.06);
 }
 
 .file-editor-header {
@@ -765,7 +804,7 @@ body {
 
 .file-editor-title {
     font-weight: 600;
-    color: #bb86fc;
+    color: #a8dadc;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -773,42 +812,38 @@ body {
 
 .edit-file-btn {
     padding: 4px 8px;
-    border: none;
-    border-radius: 6px;
-    background: rgba(100, 255, 218, 0.2);
+    border: 1px solid;
+    border-radius: 4px;
+    background: rgba(100, 255, 218, 0.05);
     color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.15);
     font-size: 0.75rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    outline: none;
 }
 
 .edit-file-btn:hover {
+    background: rgba(100, 255, 218, 0.08);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 20, 25, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 255, 218, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
     background: rgba(100, 255, 218, 0.3);
-}
-
-/* Toast animations */
-@keyframes slideInRight {
-    from {
-        transform: translateX(300px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(300px);
-        opacity: 0;
-    }
 }
 
 /* Responsive Design */
@@ -816,6 +851,10 @@ body {
     .app-container {
         padding: 24px;
         margin: 16px;
+    }
+
+    .app-title {
+        font-size: 2.25rem;
     }
 
     .controls {
@@ -827,4 +866,34 @@ body {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+    }
+
+    .project-stats {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .detail-title {
+        font-size: 1.875rem;
+    }
+
+    .form-group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 20px;
+        margin: 12px;
+    }
+
+    .app-title {
+        font-size: 1.875rem;
+    }
+
+    .detail-title {
+        font-size: 1.5rem;
+    }
+}
